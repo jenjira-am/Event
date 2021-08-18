@@ -1,6 +1,7 @@
 page 81006 "Demo Page"
 {
     Caption = 'Demo Page';
+    PageType = CardPart;
     layout
     {
         area(Content)
@@ -10,7 +11,7 @@ page 81006 "Demo Page"
                 ApplicationArea = all;
                 trigger ControlReady()
                 begin
-                    CurrPage.html.Render(createdata);
+                    //CurrPage.html.Render(createdata);
                 end;
             }
         }
@@ -27,8 +28,8 @@ page 81006 "Demo Page"
         out += '<title>jQuery Signature Pad with saving As Image Using html2canvas</title>';
         out += '<script type=''text/javascript'' src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>';
         out += '<script type=''text/javascript'' src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>';
-        out += '<script type=''text/javascript'' src="C:/Users/Administrator/Desktop/canvas2image/canvas2image/bezier.js"></script>';
-        out += '<script type=''text/javascript'' src="C:/Users/Administrator/Desktop/canvas2image/canvas2image/jquery.signaturepad.js"></script> ';
+        out += '<script type=''text/javascript'' src="https://github.com/jenjira-am/Event/releases/download/1/bezier.js"></script>';
+        out += '<script type=''text/javascript'' src="https://github.com/jenjira-am/Event/releases/download/1/jquery.signaturepad.js"></script> ';
         out += '<script type=''text/javascript'' src="https://github.com/niklasvh/html2canvas/releases/download/0.4.1/html2canvas.js"></script>';
         out += '</head>';
         out += '<body>';
@@ -65,19 +66,24 @@ page 81006 "Demo Page"
 
 controladdin HTML
 {
-    /*  RequestedHeight = 300;
-     MinimumHeight = 300;
-     MaximumHeight = 300;
-     RequestedWidth = 700;
-     MinimumWidth = 700;
-     MaximumWidth = 700; */
+    RequestedHeight = 300;
+    MinimumHeight = 300;
+    MaximumHeight = 300;
+    RequestedWidth = 700;
+    MinimumWidth = 700;
+    MaximumWidth = 700;
     VerticalStretch = true;
     VerticalShrink = true;
     HorizontalStretch = true;
     HorizontalShrink = true;
-    Scripts = 'script.js';
-    StartupScript = 'startup.js';
+    Scripts = 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js',
+                'https://github.com/jenjira-am/Event/releases/download/1/bezier.js',
+                'https://github.com/jenjira-am/Event/releases/download/1/jquery.signaturepad.js',
+                'https://github.com/niklasvh/html2canvas/releases/download/0.4.1/html2canvas.js';
+    StartupScript = 'main.js';
 
     event ControlReady();
-    procedure Render(HTML: Text);
+    //procedure Render(HTML: Text);
+    //procedure MyProcedure()
 }

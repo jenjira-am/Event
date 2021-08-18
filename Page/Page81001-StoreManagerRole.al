@@ -19,6 +19,11 @@ page 81001 "Store Manager RC"
                 Caption = 'Store Metrics';
                 UpdatePropagation = Both;
             }
+            part("DemoPage"; "Demo Page")
+            {
+                ApplicationArea = All;
+                Caption = 'Test Sign';
+            }
         }
     }
 
