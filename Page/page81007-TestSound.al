@@ -6,17 +6,9 @@ page 81007 "Test Sound"
 
     layout
     {
+
         area(Content)
         {
-            usercontrol(TestSound; TestSound)
-            {
-                ApplicationArea = all;
-                trigger Ready()
-                begin
-                    CurrPage.TestSound.test2();
-                end;
-            }
-
             field("No."; "No.")
             {
                 ApplicationArea = All;
@@ -27,8 +19,33 @@ page 81007 "Test Sound"
                 trigger OnValidate()
                 begin
                     CurrPage.TestSound.embedHomePage();
+                    FillAddIn();
                 end;
             }
+            usercontrol(TestSound; TestSound)
+            {
+                ApplicationArea = all;
+                trigger Ready()
+                begin
+                    //CurrPage.TestSound.test2();
+                end;
+            }
+
+
+            usercontrol(UserControlDesc; "Microsoft.Dynamics.Nav.Client.WebPageViewer")
+            {
+                trigger ControlAddInReady(callbackUrl: Text)
+                begin
+                    FillAddIn();
+                end;
+
+                trigger Callback(data: Text)
+                begin
+                    Description := data;
+                end;
+            }
+
+
         }
     }
     actions
@@ -55,25 +72,38 @@ page 81007 "Test Sound"
 
     end;
 
+    trigger OnAfterGetRecord()
+    begin
+        //FillAddIn();
+    end;
 
+    local procedure FillAddIn()
+    begin
+        CurrPage.UserControlDesc.SetContent(StrSubstNo('<p style="color:blue; font-weight: bold; font-size:70px;">%1</p>', Description));
+    end;
 }
+
+
 
 /*User Contraol.al*/
 
 controladdin TestSound
 {
-    RequestedHeight = 300;
-    MinimumHeight = 300;
-    MaximumHeight = 300;
-    RequestedWidth = 700;
-    MinimumWidth = 700;
-    MaximumWidth = 700;
+
+    RequestedHeight = 100;
+    MinimumHeight = 100;
+    MaximumHeight = 100;
+    RequestedWidth = 100;
+    MinimumWidth = 100;
+    MaximumWidth = 100;
+
     VerticalStretch = true;
     VerticalShrink = true;
     HorizontalStretch = true;
     HorizontalShrink = true;
     Scripts = 'main2.js';
     StartupScript = 'start.js';
+    StyleSheets = 'style.css';
 
     event Ready();
     procedure embedHomePage();

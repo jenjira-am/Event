@@ -31,6 +31,12 @@ page 81001 "Store Manager RC"
     {
         area(creation)
         {
+            action(TestSound)
+            {
+                ApplicationArea = All;
+                Caption = 'TestSound';
+                RunObject = Page "Test Sound";
+            }
             action("Run POS")
             {
                 ApplicationArea = All;
